@@ -81,15 +81,14 @@ cmake -G "Visual Studio 16 2019" \
    -DENABLE_SHARED=OFF \
    -DENABLE_STATIC=ON \
    -DWITH_JAVA=OFF \
+   -DWITH_CRT_DLL=ON \
    -DCMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo" \
    -DCMAKE_INSTALL_PREFIX="${install_path}" \
    -DCMAKE_INSTALL_BINDIR="$<CONFIGURATION>/bin" \
    -DCMAKE_INSTALL_LIBDIR="$<CONFIGURATION>/lib" \
    ${TARGET_SOURCE_DIR} || exit 1
 
-
 cmake --build . --target install --config Debug -- /maxcpucount:8 || exit 1
-exit 0
 cmake --build . --target install --config Release -- /maxcpucount:8 || exit 1
 cmake --build . --target install --config RelWithDebInfo -- /maxcpucount:8 || exit 1
 
